@@ -1,0 +1,226 @@
+/* ============================================
+   ESTILOS GLOBALES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #838587;  
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.login-container {
+    display: flex;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    max-width: 1000px;
+    width: 100%;
+    min-height: 550px;
+}
+
+/* ============================================
+   CAJA DEL LOGIN (IZQUIERDA)
+   ============================================ */
+.login-box {
+    flex: 1;
+    padding: 45px 40px;
+    background: white;
+    border: 3px solid rgb(10, 10, 10);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Logo */
+.logo {
+    font-size: 50px;
+    display: block;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo-img {
+    width: 150px;               /* Ajusta el tamaño que quieras */
+    height: 150px;              /* Debe ser igual al width para que sea círculo */
+    object-fit: cover;          /* Recorta la imagen para que encaje bien */
+    border-radius: 50%;         /* ¡Esto hace el círculo! */
+    display: block;
+    margin: 0 auto 15px;
+    border: 10px solid rgb(88, 87, 90);  
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
+}
+
+
+.logo h1 {
+    font-size: 28px;
+    color: #364cb2;
+    font-weight: bold;
+}
+
+
+.logo p {
+    color: #333535;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+/* Bienvenida */
+.bienvenida {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.bienvenida h2 {
+    font-size: 24px;
+    color: #01070e;
+}
+
+.bienvenida p {
+    color: #212222;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Campos del formulario */
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    color: #010a0b;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid #091288;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+    outline: none;
+}
+
+.campo input:focus {
+    border-color: #010311;
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2);
+}
+
+/* Opciones (Recordarme + Olvidaste) */
+.opciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.recordar {
+    color: #03060a;
+    cursor: pointer;
+}
+
+.recordar input {
+    margin-right: 6px;
+}
+
+.olvido {
+    color: #0f1673;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.olvido:hover {
+    text-decoration: underline;
+}
+
+/* Botón Ingresar */
+.btn-ingresar {
+    width: 100%;
+    padding: 14px;
+    background: #175997;
+    color: white;
+    border: 3px solid rgb(14, 13, 13);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-ingresar:hover {
+    background: #267bb0;
+    transform: scale(1.02);
+}
+
+/* Registrarse */
+.registro {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.registro a {
+    color: #010e0e;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.registro a:hover {
+    color: #0f1789;
+    text-decoration: underline;
+}
+
+/* ============================================
+   COLUMNA DERECHA (INFO)
+   ============================================ */
+.info-box {
+    background: #2768ad;
+    color: white;
+    border: 4px solid rgb(10, 10, 10);
+    padding: 50px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 35px;
+    min-width: 280px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.info-item span {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.info-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.info-item p {
+    font-size: 13px;
+    opacity: 0.85;
+}
+

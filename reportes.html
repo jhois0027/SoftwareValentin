@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Valentín - Reportes</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="logo.png/LOGO VALENTIN 1.png" alt="Logo Valentín" class="icono-logo">
+                <h1>Software Valentín<span class="subtitulo">Bisutería y Accesorios</span></h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html"><span class="icono">🏠</span><span>Panel principal</span></a>
+                <a href="inventario.html"><span class="icono">📦</span><span>Inventario</span></a>
+                <a href="ventas.html"><span class="icono">🛒</span><span>Ventas</span></a>
+                <a href="clientes.html"><span class="icono">👥</span><span>Clientes</span></a>
+                <a href="reportes.html" class="activo"><span class="icono">📊</span><span>Reportes</span></a>
+                <a href="configuracion.html"><span class="icono">⚙️</span><span>Configuración</span></a>
+                <a href="exportar.html"><span class="icono">📤</span><span>Exportar</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="cerrar-sesion"><span class="icono">🔒</span><span>Cerrar sesión</span></a>
+            </div>
+        </aside>
+
+        <!-- ============ CONTENIDO ============ -->
+        <main class="main">
+            <header class="topbar">
+                <h2><span class="modulo-icono">📊</span> Reportes</h2>
+                <div class="topbar-usuario">
+                    <div class="avatar">A</div>
+                    <span>Administrador</span>
+                </div>
+            </header>
+
+            <div class="contenido">
+
+                <!-- ============ ENCABEZADO ============ -->
+                <div class="encabezado">
+                    <div>
+                        <h2>Análisis y estadísticas</h2>
+                        <p>Selecciona un rango de fechas y un tipo de reporte</p>
+                    </div>
+                    <div style="display:flex;gap:10px; flex-wrap:wrap;">
+                        <!-- BOTÓN EXPORTAR REPORTE -->
+                        <button class="btn btn-primario" id="exportar-reporte">📤 Exportar reporte</button>
+                        <!-- BOTÓN GENERAR REPORTE -->
+                        <button class="btn btn-success" id="generar-reporte">🔄 Generar reporte</button>
+                    </div>
+                </div>
+
+                <!-- ============ FILTROS ============ -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>📋 Filtros de reporte</h3>
+                        <!-- BOTÓN LIMPIAR FILTROS -->
+                        <button class="btn btn-secundario" id="limpiar-filtros" style="padding:6px 15px; font-size:12px;">🗑️ Limpiar filtros</button>
+                    </div>
+                    <div class="form-grid" style="grid-template-columns: 1fr 1fr 1fr 0.7fr; gap:15px; padding:20px;">
+                        <div class="campo">
+                            <label>Fecha inicio</label>
+                            <input type="date" id="fecha-inicio" value="2024-06-01">
+                        </div>
+                        <div class="campo">
+                            <label>Fecha fin</label>
+                            <input type="date" id="fecha-fin" value="2024-06-30">
+                        </div>
+                        <div class="campo">
+                            <label>Tipo de reporte</label>
+                            <select id="tipo-reporte">
+                                <option value="ventas">📊 Ventas por periodo</option>
+                                <option value="top">🏆 Productos más vendidos</option>
+                                <option value="clientes">👥 Clientes frecuentes</option>
+                                <option value="inventario">📦 Inventario valorizado</option>
+                            </select>
+                        </div>
+                        <div class="campo" style="display:flex; align-items:flex-end;">
+                            <!-- BOTÓN APLICAR FILTROS -->
+                            <button class="btn btn-primario" id="aplicar-filtros" style="width:100%; padding:12px;">✅ Aplicar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ KPIs ============ -->
+                <div class="grid-kpi">
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-ventas);">
+                        <div class="kpi-label">Ingresos del periodo</div>
+                        <div class="kpi-valor" id="ingresos-periodo">$0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-inventario);">
+                        <div class="kpi-label">Unidades vendidas</div>
+                        <div class="kpi-valor" id="unidades-vendidas">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-clientes);">
+                        <div class="kpi-label">Nuevos clientes</div>
+                        <div class="kpi-valor" id="nuevos-clientes">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-reportes);">
+                        <div class="kpi-label">Margen promedio</div>
+                        <div class="kpi-valor" id="margen-promedio">0%</div>
+                    </div>
+                </div>
+
+                <!-- ============ TABLA PRODUCTOS MÁS VENDIDOS ============ -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>🏆 Productos más vendidos</h3>
+                        <div style="display:flex; gap:10px;">
+                            <!-- BOTÓN ORDENAR -->
+                            <button class="btn btn-secundario" id="ordenar-productos" style="padding:6px 15px; font-size:12px;">⬇️ Ordenar</button>
+                            <!-- BOTÓN EXPORTAR TABLA -->
+                            <button class="btn btn-secundario" id="exportar-tabla" style="padding:6px 15px; font-size:12px;">📤 Exportar</button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Producto</th>
+                                    <th>Categoría</th>
+                                    <th>Unidades</th>
+                                    <th>Ingresos</th>
+                                    <th>Participación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-reportes">
+                                <!-- Datos de ejemplo -->
+                                <tr>
+                                    <td>1</td>
+                                    <td><strong>Anillo de Plata</strong></td>
+                                    <td>Anillos</td>
+                                    <td>4</td>
+                                    <td>$180,000</td>
+                                    <td>39%</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><strong>Collar de Perlas</strong></td>
+                                    <td>Collares</td>
+                                    <td>2</td>
+                                    <td>$240,000</td>
+                                    <td>52%</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><strong>Pulsera de Cuentas</strong></td>
+                                    <td>Pulseras</td>
+                                    <td>3</td>
+                                    <td>$84,000</td>
+                                    <td>18%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-counter" style="text-align:right; padding:10px 20px; color:#666; font-size:14px;">
+                        📊 Mostrando <span id="contador-productos-reporte">3</span> productos
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT - ENLAZADO -->
+    <!-- ========================================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>

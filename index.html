@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Valentín - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo para las credenciales de prueba */
+        .credenciales-demo {
+            background: #f0f4ff;
+            border: 2px dashed #6c63ff;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #333;
+            text-align: center;
+        }
+        .credenciales-demo strong {
+            color: #6c63ff;
+        }
+        .credenciales-demo .usuario {
+            background: #6c63ff;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .credenciales-demo .clave {
+            background: #28a745;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+
+        <!-- ============ COLUMNA IZQUIERDA (INFO) ============ -->
+        <div class="info-box">
+            <div class="logo-container">
+                <img src="logo.png/LOGO VALENTIN 1.png" alt="Logo Valentín" class="logo-img">
+            </div>
+            
+            <div class="info-item">
+                <span>💎</span>
+                <h3>Bisutería y Accesorios</h3>
+                <p>Gestión inteligente</p>
+            </div>
+            <div class="info-item">
+                <span>📦</span>
+                <h3>Control de inventario</h3>
+                <p>en tiempo real</p>
+            </div>
+            <div class="info-item">
+                <span>📋</span>
+                <h3>Seguimiento de pedidos</h3>
+                <p>y entregas</p>
+            </div>
+            <div class="info-item">
+                <span>📊</span>
+                <h3>Reportes y estadísticas</h3>
+                <p>avanzadas</p>
+            </div>
+        </div>
+
+        <!-- ============ COLUMNA DERECHA (LOGIN) ============ -->
+        <div class="login-box">
+
+            <div class="logo">
+                <span class="icono-logo">💎</span>
+                <h1>Software Valentín</h1>
+                <p>Sistema de Gestión</p>
+            </div>
+
+            <div class="bienvenida">
+                <h2>Bienvenido</h2>
+                <p>Ingresa tus credenciales para continuar</p>
+            </div>
+
+            <!-- ============ FORMULARIO ============ -->
+            <form id="form-login">
+
+                <div class="campo">
+                    <label>CORREO ELECTRÓNICO</label>
+                    <input type="email" id="login-email" placeholder="ejemplo@correo.com" required>
+                </div>
+
+                <div class="campo">
+                    <label>CONTRASEÑA</label>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <input type="password" id="login-password" placeholder="••••••••" required style="flex:1;">
+                        <button type="button" id="togglePassword" style="background:none; border:none; cursor:pointer; font-size:20px; padding:8px;">👁️</button>
+                    </div>
+                </div>
+
+                <div class="opciones">
+                    <label class="recordar">
+                        <input type="checkbox" id="recordarme"> Recordarme
+                    </label>
+                    <button type="button" id="btnOlvido" style="background:none; border:none; color:#6c63ff; cursor:pointer; font-size:14px; text-decoration:underline;">
+                        ¿Olvidaste tu contraseña?
+                    </button>
+                </div>
+
+                <button type="submit" class="btn-ingresar" id="btnIngresar">🚪 Ingresar</button>
+
+                <div class="registro">
+                    <button type="button" id="btnRegistro" style="background:none; border:none; color:#6c63ff; cursor:pointer; font-size:14px; text-decoration:underline;">
+                        📝 Registrarse
+                    </button>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- CREDENCIALES DE PRUEBA VISIBLES -->
+                <!-- ========================================== -->
+                <div class="credenciales-demo">
+                    <strong>📋 Credenciales de prueba</strong><br>
+                    <span class="usuario">📧 admin@valentin.com</span>
+                    <span style="margin:0 5px;">/</span>
+                    <span class="clave">🔑 1234</span>
+                </div>
+
+                <!-- Mensaje de error -->
+                <div id="mensaje-error" style="display:none; background:#fee; color:#dc3545; padding:10px; border-radius:8px; margin-top:15px; text-align:center; font-size:14px;">
+                    ⚠️ <span id="texto-error">Credenciales incorrectas</span>
+                </div>
+
+            </form>
+
+        </div><!-- fin login-box -->
+
+    </div><!-- fin login-container -->
+
+    <!-- ========================================== -->
+    <!-- SCRIPT - ENLAZADO -->
+    <!-- ========================================== -->
+    <script src="script.js"></script>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT ADICIONAL PARA LOGIN -->
+    <!-- ========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            console.log('✅ Login cargado');
+            console.log('📝 Credenciales: admin@valentin.com / 1234');
+
+            // ==========================================
+            // MOSTRAR/OCULTAR CONTRASEÑA
+            // ==========================================
+            document.getElementById('togglePassword')?.addEventListener('click', function() {
+                const passwordInput = document.getElementById('login-password');
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    this.textContent = '🙈';
+                } else {
+                    passwordInput.type = 'password';
+                    this.textContent = '👁️';
+                }
+            });
+
+            // ==========================================
+            // MOSTRAR ERROR
+            // ==========================================
+            function mostrarError(mensaje) {
+                const errorDiv = document.getElementById('mensaje-error');
+                const textoError = document.getElementById('texto-error');
+                if (errorDiv && textoError) {
+                    textoError.textContent = mensaje;
+                    errorDiv.style.display = 'block';
+                }
+            }
+
+            function ocultarError() {
+                const errorDiv = document.getElementById('mensaje-error');
+                if (errorDiv) {
+                    errorDiv.style.display = 'none';
+                }
+            }
+
+            // ==========================================
+            // VALIDAR Y PROCESAR LOGIN
+            // ==========================================
+            document.getElementById('form-login')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value.trim();
+
+                ocultarError();
+
+                if (!email || !password) {
+                    mostrarError('Por favor completa todos los campos');
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    mostrarError('Ingresa un correo electrónico válido');
+                    return;
+                }
+
+                if (password.length < 4) {
+                    mostrarError('La contraseña debe tener al menos 4 caracteres');
+                    return;
+                }
+
+                // CREDENCIALES
+                const usuarioValido = 'admin@valentin.com';
+                const passValido = '1234';
+
+                if (email === usuarioValido && password === passValido) {
+                    alert('✅ ¡Bienvenido al sistema!\n\nUsuario: ' + email);
+                    localStorage.setItem('valentin_sesion', 'activa');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    mostrarError('Correo o contraseña incorrectos');
+                }
+            });
+
+            // ==========================================
+            // BOTÓN OLVIDASTE CONTRASEÑA
+            // ==========================================
+            document.getElementById('btnOlvido')?.addEventListener('click', function() {
+                const email = document.getElementById('login-email').value.trim();
+                if (email) {
+                    alert('📧 Se ha enviado un enlace de recuperación a:\n\n' + email);
+                } else {
+                    alert('📧 Ingresa tu correo para recuperar tu contraseña.\n\nEjemplo: admin@valentin.com');
+                }
+            });
+
+            // ==========================================
+            // BOTÓN REGISTRARSE
+            // ==========================================
+            document.getElementById('btnRegistro')?.addEventListener('click', function() {
+                alert('📝 Formulario de registro\n\nContacta al administrador.\n\n📧 admin@valentin.com');
+            });
+
+            // ==========================================
+            // AUTOCOMPLETAR DEMO
+            // ==========================================
+            document.getElementById('login-email')?.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !this.value) {
+                    this.value = 'admin@valentin.com';
+                    document.getElementById('login-password').value = '1234';
+                    document.getElementById('login-password').focus();
+                }
+            });
+
+            // ==========================================
+            // INGRESAR CON ENTER
+            // ==========================================
+            document.getElementById('login-password')?.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('btnIngresar').click();
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Valentín - Exportar</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="logo.png/LOGO VALENTIN 1.png" alt="Logo Valentín" class="icono-logo">
+            <h1>Software Valentín<span class="subtitulo">Bisutería y Accesorios</span></h1>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html"><span class="icono">🏠</span><span>Panel principal</span></a>
+            <a href="inventario.html"><span class="icono">📦</span><span>Inventario</span></a>
+            <a href="ventas.html"><span class="icono">🛒</span><span>Ventas</span></a>
+            <a href="clientes.html"><span class="icono">👥</span><span>Clientes</span></a>
+            <a href="reportes.html"><span class="icono">📊</span><span>Reportes</span></a>
+            <a href="configuracion.html"><span class="icono">⚙️</span><span>Configuración</span></a>
+            <a href="exportar.html" class="activo"><span class="icono">📤</span><span>Exportar</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" class="cerrar-sesion"><span class="icono">🔒</span><span>Cerrar sesión</span></a>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <h2><span class="modulo-icono">📤</span> Exportar</h2>
+            <div class="topbar-usuario">
+                <div class="avatar">A</div>
+                <span>Administrador</span>
+            </div>
+        </header>
+
+        <div class="contenido">
+
+            <div class="encabezado">
+                <div>
+                    <h2>Descargar información</h2>
+                    <p>Elige qué datos quieres exportar como archivo</p>
+                </div>
+                <!-- BOTÓN EXPORTAR TODO -->
+                <button class="btn btn-success" id="exportar-todo">📥 Exportar todo</button>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Selecciona la información</h3>
+                    <button class="btn btn-secundario" id="seleccionar-todos" style="padding:6px 15px; font-size:12px;">☑️ Seleccionar todos</button>
+                </div>
+                <div class="grid-exportar" style="padding:22px;">
+
+                    <!-- TARJETA INVENTARIO -->
+                    <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-inventario);">
+                        <div class="icono-grande">📦</div>
+                        <h4>Inventario completo</h4>
+                        <p>Productos con stock, precio y categoría</p>
+                        <button class="btn btn-primario btn-exportar-datos" data-tipo="inventario" style="margin-top:8px;">📊 Generar Excel</button>
+                    </div>
+
+                    <!-- TARJETA VENTAS -->
+                    <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-ventas);">
+                        <div class="icono-grande">🛒</div>
+                        <h4>Historial de ventas</h4>
+                        <p>Ventas del periodo seleccionado</p>
+                        <button class="btn btn-primario btn-exportar-datos" data-tipo="ventas" style="margin-top:8px;">📊 Generar Excel</button>
+                    </div>
+
+                    <!-- TARJETA CLIENTES -->
+                    <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-clientes);">
+                        <div class="icono-grande">👥</div>
+                        <h4>Base de clientes</h4>
+                        <p>Clientes con contacto y compras</p>
+                        <button class="btn btn-primario btn-exportar-datos" data-tipo="clientes" style="margin-top:8px;">📊 Generar Excel</button>
+                    </div>
+
+                    <!-- TARJETA REPORTES -->
+                    <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-reportes);">
+                        <div class="icono-grande">📊</div>
+                        <h4>Reporte de indicadores</h4>
+                        <p>KPIs de ventas, stock y clientes</p>
+                        <button class="btn btn-primario btn-exportar-datos" data-tipo="reportes" style="margin-top:8px;">📊 Generar Excel</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- OPCIONES -->
+            <div class="panel">
+                <div class="panel-header"><h3>⚙️ Opciones</h3></div>
+                <div style="padding:22px; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
+                    <div class="campo">
+                        <label style="display:block; font-weight:600; margin-bottom:5px;">Formato</label>
+                        <select id="formato-exportacion" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px;">
+                            <option value="xlsx">📊 Excel (.xlsx)</option>
+                            <option value="pdf">📄 PDF</option>
+                            <option value="csv">📋 CSV</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label style="display:block; font-weight:600; margin-bottom:5px;">Periodo</label>
+                        <select id="periodo-exportacion" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px;">
+                            <option value="hoy">Hoy</option>
+                            <option value="semana">Esta semana</option>
+                            <option value="mes" selected>Este mes</option>
+                            <option value="todo">Todo el historial</option>
+                        </select>
+                    </div>
+                    <div class="campo" style="display:flex; align-items:flex-end;">
+                        <button class="btn btn-primario" id="aplicar-opciones" style="width:100%; padding:12px;">✅ Aplicar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPORTACIONES RECIENTES -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>📋 Exportaciones recientes</h3>
+                    <button class="btn btn-danger" id="limpiar-historial" style="padding:6px 15px; font-size:12px;">🗑️ Limpiar historial</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Archivo</th><th>Tipo</th><th>Fecha</th><th>Tamaño</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody id="tabla-exportaciones">
+                            <tr>
+                                <td><strong>Inventario_2024_06.xlsx</strong></td>
+                                <td><span class="badge badge-success">Excel</span></td>
+                                <td>15/06/2024 14:30</td>
+                                <td>245 KB</td>
+                                <td>
+                                    <button class="btn btn-descargar" style="padding:5px 10px; background:#17a2b8; color:white; border:none; border-radius:5px; cursor:pointer;">⬇️</button>
+                                    <button class="btn btn-eliminar-export" style="padding:5px 10px; background:#dc3545; color:white; border:none; border-radius:5px; cursor:pointer;">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ventas_2024_06.pdf</strong></td>
+                                <td><span class="badge badge-danger">PDF</span></td>
+                                <td>14/06/2024 10:15</td>
+                                <td>1.2 MB</td>
+                                <td>
+                                    <button class="btn btn-descargar" style="padding:5px 10px; background:#17a2b8; color:white; border:none; border-radius:5px; cursor:pointer;">⬇️</button>
+                                    <button class="btn btn-eliminar-export" style="padding:5px 10px; background:#dc3545; color:white; border:none; border-radius:5px; cursor:pointer;">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-counter" style="text-align:right; padding:10px 20px; color:#666; font-size:14px;">
+                    📊 Total: <span id="contador-exportaciones">2</span> exportaciones
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

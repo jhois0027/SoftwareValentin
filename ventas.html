@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Valentín - Ventas</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="logo.png/LOGO VALENTIN 1.png" alt="Logo Valentín" class="icono-logo">
+                <h1>Software Valentín<span class="subtitulo">Bisutería y Accesorios</span></h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html"><span class="icono">🏠</span><span>Panel principal</span></a>
+                <a href="inventario.html"><span class="icono">📦</span><span>Inventario</span></a>
+                <a href="ventas.html" class="activo"><span class="icono">🛒</span><span>Ventas</span></a>
+                <a href="clientes.html"><span class="icono">👥</span><span>Clientes</span></a>
+                <a href="reportes.html"><span class="icono">📊</span><span>Reportes</span></a>
+                <a href="configuracion.html"><span class="icono">⚙️</span><span>Configuración</span></a>
+                <a href="exportar.html"><span class="icono">📤</span><span>Exportar</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="cerrar-sesion"><span class="icono">🔒</span><span>Cerrar sesión</span></a>
+            </div>
+        </aside>
+
+        <!-- ============ CONTENIDO ============ -->
+        <main class="main">
+            <header class="topbar">
+                <h2><span class="modulo-icono">🛒</span> Ventas</h2>
+                <div class="topbar-usuario">
+                    <div class="avatar">A</div>
+                    <span>Administrador</span>
+                </div>
+            </header>
+
+            <div class="contenido">
+
+                <!-- ============ ENCABEZADO ============ -->
+                <div class="encabezado">
+                    <div>
+                        <h2>Registro de ventas</h2>
+                        <p>Aquí verás el historial de ventas realizadas</p>
+                    </div>
+                    <div style="display:flex;gap:10px; flex-wrap:wrap;">
+                        <!-- BOTÓN EXPORTAR -->
+                        <button class="btn btn-secundario" id="exportar-ventas">📤 Exportar</button>
+                        <!-- BOTÓN NUEVA VENTA -->
+                        <button class="btn btn-primario btn-agregar" data-form="form-ventas">➕ Nueva venta</button>
+                    </div>
+                </div>
+
+                <!-- ============ KPIs ============ -->
+                <div class="grid-kpi">
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-ventas);">
+                        <div class="kpi-label">Ventas de hoy</div>
+                        <div class="kpi-valor" id="ventas-hoy">$0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-clientes);">
+                        <div class="kpi-label"># de ventas</div>
+                        <div class="kpi-valor" id="num-ventas">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-reportes);">
+                        <div class="kpi-label">Ticket promedio</div>
+                        <div class="kpi-valor" id="ticket-promedio">$0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-inventario);">
+                        <div class="kpi-label">Ventas del mes</div>
+                        <div class="kpi-valor" id="ventas-mes">$0</div>
+                    </div>
+                </div>
+
+                <!-- ============ FORMULARIO ============ -->
+                <div id="form-ventas" class="form-container" style="display:none; background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+                    <h3 style="margin-bottom:15px;">🛒 Nueva venta</h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:15px;">
+                        <div>
+                            <label style="display:block; font-weight:600; margin-bottom:5px; font-size:13px;">Cliente</label>
+                            <select id="venta-cliente" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px;">
+                                <option value="Cliente mostrador">Cliente mostrador</option>
+                                <option value="María González">María González</option>
+                                <option value="Juan Pérez">Juan Pérez</option>
+                                <option value="Carlos López">Carlos López</option>
+                                <option value="Ana Martínez">Ana Martínez</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-weight:600; margin-bottom:5px; font-size:13px;">Producto</label>
+                            <select id="venta-producto" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px;">
+                                <option value="Anillo de Plata">💍 Anillo de Plata - $45,000</option>
+                                <option value="Pulsera de Cuentas">📿 Pulsera de Cuentas - $28,000</option>
+                                <option value="Collar de Perlas">📿 Collar de Perlas - $120,000</option>
+                                <option value="Aretes de Acero">✨ Aretes de Acero - $35,000</option>
+                                <option value="DiJe de Corazón">🔮 DiJe de Corazón - $85,000</option>
+                                <option value="Llavero Estrella">🔑 Llavero Estrella - $18,000</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-weight:600; margin-bottom:5px; font-size:13px;">Cantidad</label>
+                            <input type="number" id="venta-cantidad" value="1" min="1" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px;">
+                        </div>
+                        <div>
+                            <label style="display:block; font-weight:600; margin-bottom:5px; font-size:13px;">Pago</label>
+                            <select id="venta-pago" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px;">
+                                <option value="Efectivo">💰 Efectivo</option>
+                                <option value="Tarjeta">💳 Tarjeta</option>
+                                <option value="Nequi">📱 Nequi</option>
+                                <option value="Daviplata">📱 Daviplata</option>
+                                <option value="Transferencia">🏦 Transferencia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:15px; padding:15px; background:#f8f9fa; border-radius:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                        <span style="font-weight:bold; font-size:18px;">Total: <span id="venta-total-preview">$0</span></span>
+                        <span style="color:#666; font-size:14px;">Selecciona producto y cantidad</span>
+                    </div>
+
+                    <div style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap;">
+                        <!-- BOTÓN GUARDAR VENTA -->
+                        <button class="btn btn-primario" id="guardar-venta">💾 Registrar venta</button>
+                        <!-- BOTÓN CANCELAR -->
+                        <button class="btn btn-secundario" id="cancelar-venta">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <!-- ============ TABLA ============ -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Historial de ventas</h3>
+                        <div class="buscador">
+                            🔍 <input type="text" class="buscar" placeholder="Buscar por cliente o Nº de venta...">
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nº Venta</th>
+                                    <th>Cliente</th>
+                                    <th>Productos</th>
+                                    <th>Total</th>
+                                    <th>Pago</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-ventas">
+                                <!-- Los datos se cargan desde localStorage -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-counter" style="text-align:right; padding:10px 20px; color:#666; font-size:14px;">
+                        📊 Total: <span id="contador-ventas">0</span> ventas
+                    </div>
+
+                    <div class="estado-vacio" id="vacio-ventas" style="display:none;">
+                        <div class="icono-vacio">🛒</div>
+                        <h4>Todavía no hay ventas registradas</h4>
+                        <p>Cuando registres una venta, aparecerá aquí con su detalle.</p>
+                        <button class="btn btn-primario btn-agregar" data-form="form-ventas">➕ Nueva venta</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT - ENLAZADO -->
+    <!-- ========================================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>

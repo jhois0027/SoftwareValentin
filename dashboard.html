@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Valentín - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="logo.png/LOGO VALENTIN 1.png" alt="Logo Valentín" class="icono-logo">
+                <h1>Software Valentín<span class="subtitulo">Bisutería y Accesorios</span></h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="activo"><span class="icono">🏠</span><span>Panel principal</span></a>
+                <a href="inventario.html"><span class="icono">📦</span><span>Inventario</span></a>
+                <a href="ventas.html"><span class="icono">🛒</span><span>Ventas</span></a>
+                <a href="clientes.html"><span class="icono">👥</span><span>Clientes</span></a>
+                <a href="reportes.html"><span class="icono">📊</span><span>Reportes</span></a>
+                <a href="configuracion.html"><span class="icono">⚙️</span><span>Configuración</span></a>
+                <a href="exportar.html"><span class="icono">📤</span><span>Exportar</span></a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="cerrar-sesion"><span class="icono">🔒</span><span>Cerrar sesión</span></a>
+            </div>
+        </aside>
+
+        <!-- ============ CONTENIDO ============ -->
+        <main class="main">
+            <header class="topbar">
+                <h2><span class="modulo-icono">🏠</span> Panel principal</h2>
+                <div class="topbar-usuario">
+                    <div class="avatar">A</div>
+                    <span>Administrador</span>
+                </div>
+            </header>
+
+            <div class="contenido">
+
+                <!-- ============ ENCABEZADO ============ -->
+                <div class="encabezado">
+                    <div>
+                        <h2>Bienvenido 👋</h2>
+                        <p id="fecha-actual">Resumen general de la bisutería Valentín</p>
+                    </div>
+                    <!-- BOTÓN EXPORTAR RESUMEN -->
+                    <button class="btn btn-secundario" id="exportar-resumen">📤 Exportar resumen</button>
+                </div>
+
+                <!-- ============ KPIs ============ -->
+                <div class="grid-kpi">
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-ventas);">
+                        <div class="kpi-label">Ventas de hoy</div>
+                        <div class="kpi-valor" id="ventas-hoy">$0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-inventario);">
+                        <div class="kpi-label">Productos en stock</div>
+                        <div class="kpi-valor" id="productos-stock">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-clientes);">
+                        <div class="kpi-label">Clientes activos</div>
+                        <div class="kpi-valor" id="clientes-activos">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-reportes);">
+                        <div class="kpi-label">Producto más vendido</div>
+                        <div class="kpi-valor" id="producto-top" style="font-size:16px;">—</div>
+                    </div>
+                </div>
+
+                <!-- ============ ACCESOS RÁPIDOS ============ -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Accesos rápidos</h3>
+                        <!-- BOTÓN REFRESCAR -->
+                        <button class="btn btn-secundario" id="refrescar-datos" style="padding:6px 15px; font-size:12px;">🔄 Refrescar</button>
+                    </div>
+                    <div class="grid-exportar" style="padding:22px;">
+
+                        <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-inventario); cursor:pointer;" onclick="window.location.href='inventario.html'">
+                            <div class="icono-grande">📦</div>
+                            <h4>Inventario</h4>
+                            <p>Gestiona productos y existencias</p>
+                            <!-- BOTÓN IR A INVENTARIO -->
+                            <button class="btn btn-primario" style="margin-top:10px; padding:8px 20px; font-size:13px;">Ir a inventario →</button>
+                        </div>
+
+                        <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-ventas); cursor:pointer;" onclick="window.location.href='ventas.html'">
+                            <div class="icono-grande">🛒</div>
+                            <h4>Ventas</h4>
+                            <p>Registra y consulta ventas</p>
+                            <!-- BOTÓN IR A VENTAS -->
+                            <button class="btn btn-primario" style="margin-top:10px; padding:8px 20px; font-size:13px;">Ir a ventas →</button>
+                        </div>
+
+                        <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-clientes); cursor:pointer;" onclick="window.location.href='clientes.html'">
+                            <div class="icono-grande">👥</div>
+                            <h4>Clientes</h4>
+                            <p>Administra tu cartera de clientes</p>
+                            <!-- BOTÓN IR A CLIENTES -->
+                            <button class="btn btn-primario" style="margin-top:10px; padding:8px 20px; font-size:13px;">Ir a clientes →</button>
+                        </div>
+
+                        <div class="tarjeta tarjeta-exportar" style="--modulo-color:var(--c-reportes); cursor:pointer;" onclick="window.location.href='reportes.html'">
+                            <div class="icono-grande">📊</div>
+                            <h4>Reportes</h4>
+                            <p>Analiza estadísticas del negocio</p>
+                            <!-- BOTÓN IR A REPORTES -->
+                            <button class="btn btn-primario" style="margin-top:10px; padding:8px 20px; font-size:13px;">Ir a reportes →</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ============ BOTONES DE ACCIÓN RÁPIDA ============ -->
+                <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:25px; padding:20px; background:white; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+                    <!-- BOTÓN NUEVA VENTA -->
+                    <button class="btn btn-primario" onclick="window.location.href='ventas.html'">➕ Nueva venta</button>
+                    <!-- BOTÓN NUEVO CLIENTE -->
+                    <button class="btn btn-success" onclick="window.location.href='clientes.html'">👤 Nuevo cliente</button>
+                    <!-- BOTÓN NUEVO PRODUCTO -->
+                    <button class="btn btn-warning" onclick="window.location.href='inventario.html'" style="background:#f39c12; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">📦 Nuevo producto</button>
+                    <!-- BOTÓN EXPORTAR DATOS -->
+                    <button class="btn btn-exportar" id="exportar-datos" style="background:#6c757d; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">📤 Exportar datos</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT - ENLAZADO -->
+    <!-- ========================================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>

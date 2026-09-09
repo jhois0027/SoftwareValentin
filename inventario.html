@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Valentín - Inventario</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="logo.png/LOGO VALENTIN 1.png" alt="Logo Valentín" class="icono-logo">
+                <h1>Software Valentín<span class="subtitulo">Bisutería y Accesorios</span></h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html"><span class="icono">🏠</span><span>Panel principal</span></a>
+                <a href="inventario.html" class="activo"><span class="icono">📦</span><span>Inventario</span></a>
+                <a href="ventas.html"><span class="icono">🛒</span><span>Ventas</span></a>
+                <a href="clientes.html"><span class="icono">👥</span><span>Clientes</span></a>
+                <a href="reportes.html"><span class="icono">📊</span><span>Reportes</span></a>
+                <a href="configuracion.html"><span class="icono">⚙️</span><span>Configuración</span></a>
+                <a href="exportar.html"><span class="icono">📤</span><span>Exportar</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="cerrar-sesion"><span class="icono">🔒</span><span>Cerrar sesión</span></a>
+            </div>
+        </aside>
+
+        <!-- ============ CONTENIDO ============ -->
+        <main class="main">
+            <header class="topbar">
+                <h2><span class="modulo-icono">📦</span> Inventario</h2>
+                <div class="topbar-usuario">
+                    <div class="avatar">A</div>
+                    <span>Administrador</span>
+                </div>
+            </header>
+
+            <div class="contenido">
+
+                <!-- ============ ENCABEZADO ============ -->
+                <div class="encabezado">
+                    <div>
+                        <h2>Gestión de productos</h2>
+                        <p>Aquí verás todos tus productos registrados</p>
+                    </div>
+                    <div style="display:flex;gap:10px; flex-wrap:wrap;">
+                        <!-- BOTÓN EXPORTAR -->
+                        <button class="btn btn-secundario" id="exportar-inventario">📤 Exportar</button>
+                        <!-- BOTÓN AGREGAR PRODUCTO -->
+                        <button class="btn btn-primario btn-agregar" data-form="form-inventario">➕ Agregar producto</button>
+                    </div>
+                </div>
+
+                <!-- ============ KPIs ============ -->
+                <div class="grid-kpi">
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-inventario);">
+                        <div class="kpi-label">Total productos</div>
+                        <div class="kpi-valor" id="total-productos">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-reportes);">
+                        <div class="kpi-label">Stock bajo</div>
+                        <div class="kpi-valor" id="stock-bajo">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-ventas);">
+                        <div class="kpi-label">Agotados</div>
+                        <div class="kpi-valor" id="agotados">0</div>
+                    </div>
+                    <div class="tarjeta kpi" style="--modulo-color:var(--c-clientes);">
+                        <div class="kpi-label">Valor total en stock</div>
+                        <div class="kpi-valor" id="valor-stock">$0</div>
+                    </div>
+                </div>
+
+                <!-- ============ FORMULARIO ============ -->
+                <div id="form-inventario" class="form-container" style="display:none; background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+                    <h3 style="margin-bottom:15px;">💎 Nuevo producto</h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:15px;">
+                        <input type="text" id="prod-codigo" placeholder="Código" required style="padding:10px; border:2px solid #ddd; border-radius:8px;">
+                        <input type="text" id="prod-nombre" placeholder="Nombre del producto" required style="padding:10px; border:2px solid #ddd; border-radius:8px;">
+                        <input type="text" id="prod-categoria" placeholder="Categoría" style="padding:10px; border:2px solid #ddd; border-radius:8px;">
+                        <input type="number" id="prod-stock" placeholder="Cantidad" required style="padding:10px; border:2px solid #ddd; border-radius:8px;">
+                        <input type="number" id="prod-precio" placeholder="Precio" required style="padding:10px; border:2px solid #ddd; border-radius:8px;">
+                    </div>
+                    <div style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap;">
+                        <!-- BOTÓN GUARDAR -->
+                        <button class="btn btn-primario" id="guardar-producto">💾 Guardar</button>
+                        <!-- BOTÓN CANCELAR -->
+                        <button class="btn btn-secundario" id="cancelar-producto">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <!-- ============ TABLA ============ -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Listado de productos</h3>
+                        <div class="buscador">
+                            🔍 <input type="text" class="buscar" placeholder="Buscar por nombre o código...">
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Producto</th>
+                                    <th>Categoría</th>
+                                    <th>Stock</th>
+                                    <th>Precio</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-productos">
+                                <!-- Los productos se cargan desde localStorage -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-counter" style="text-align:right; padding:10px 20px; color:#666; font-size:14px;">
+                        📊 Total: <span id="contador-productos">0</span> productos
+                    </div>
+
+                    <div class="estado-vacio" id="vacio-productos" style="display:none;">
+                        <div class="icono-vacio">📦</div>
+                        <h4>Aún no hay productos registrados</h4>
+                        <p>Agrega tu primer producto para empezar a controlar tu inventario.</p>
+                        <button class="btn btn-primario btn-agregar" data-form="form-inventario">➕ Agregar producto</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT - ENLAZADO -->
+    <!-- ========================================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>
